@@ -29,6 +29,6 @@ public class EmployeeRemoveController {
     @ApiOperation("获取所有员工调动信息")
     @GetMapping("/")
     public List<EmployeeRemove> getAllEmployeeRemove() {
-        return employeeRemoveService.list();
+        return employeeRemoveService.getAllEmployeeRemove();
     }
 }

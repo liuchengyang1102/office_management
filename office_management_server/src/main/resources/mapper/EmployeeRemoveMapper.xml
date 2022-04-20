@@ -4,18 +4,48 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.liucy.server.pojo.EmployeeRemove">
-        <id column="id" property="id" />
-        <result column="eid" property="eid" />
-        <result column="afterDepId" property="afterDepId" />
-        <result column="afterJobId" property="afterJobId" />
-        <result column="removeDate" property="removeDate" />
-        <result column="reason" property="reason" />
-        <result column="remark" property="remark" />
+        <id column="id" property="id"/>
+        <result column="eid" property="eid"/>
+        <result column="afterDepId" property="afterDepId"/>
+        <result column="afterJobId" property="afterJobId"/>
+        <result column="removeDate" property="removeDate"/>
+        <result column="reason" property="reason"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <resultMap id="EmployeeRemoveInfo" type="com.liucy.server.pojo.EmployeeRemove" extends="BaseResultMap">
+        <association property="employee" javaType="com.liucy.server.pojo.Employee">
+            <result column="ename" property="name"/>
+        </association>
+        <association property="department" javaType="com.liucy.server.pojo.Department">
+            <result column="dname" property="name"/>
+        </association>
+        <association property="position" javaType="com.liucy.server.pojo.Position">
+            <result column="pname" property="name"/>
+        </association>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, eid, afterDepId, afterJobId, removeDate, reason, remark
     </sql>
+
+    <!-- 获取所有员工调动信息 -->
+    <select id="getAllEmployeeRemove" resultMap="EmployeeRemoveInfo">
+        SELECT
+            er.*,
+            e.name as ename,
+            d.name AS dname,
+            p.name AS pname
+        FROM
+            t_employee_remove er,
+            t_employee e,
+            t_department d,
+            t_position p
+        WHERE
+            er.afterDepId = d.id
+            and er.afterJobId = p.id
+            and er.eid = e.id
+    </select>
 
 </mapper>
