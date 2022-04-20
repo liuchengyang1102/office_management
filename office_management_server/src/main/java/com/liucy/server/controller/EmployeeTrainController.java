@@ -3,8 +3,6 @@ package com.liucy.server.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * <p>
  * 前端控制器
