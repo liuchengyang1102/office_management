@@ -1,6 +1,7 @@
 package com.liucy.server.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 刘呈洋
@@ -22,7 +23,7 @@ import java.time.LocalDate;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("t_employee_ec")
-@ApiModel(value="EmployeeEc对象", description="")
+@ApiModel(value = "EmployeeEc对象", description = "")
 public class EmployeeEc implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,5 +50,7 @@ public class EmployeeEc implements Serializable {
     @ApiModelProperty(value = "备注")
     private String remark;
 
-
+    @ApiModelProperty(value = "员工")
+    @TableField(exist = false)
+    private Employee employee;
 }
